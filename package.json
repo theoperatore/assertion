@@ -1,0 +1,31 @@
+{
+  "name": "as.sert.me",
+  "version": "0.1.0",
+  "description": "A simple editor that allows for easy and sharable js assertions using chai",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/theoperatore/assertMe.git"
+  },
+  "author": "Alex Petersen <theoperatore@gmail.com> (http://anpetersen.me)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/theoperatore/assertMe/issues"
+  },
+  "homepage": "https://github.com/theoperatore/assertMe#readme",
+  "dependencies": {
+    "chai": "^3.3.0",
+    "express": "^4.13.3",
+    "sinon": "^1.17.1",
+    "sinon-chai": "^2.8.0"
+  },
+  "devDependencies": {
+    "babelify": "^6.3.0",
+    "beefy": "^2.1.5",
+    "browserify": "^11.2.0",
+    "watchify": "^3.4.0"
+  }
+}
