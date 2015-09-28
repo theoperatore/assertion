@@ -4,7 +4,9 @@
   "description": "A simple editor that allows for easy and sharable js assertions using chai",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "browserify -d -t [babelify --stage 0 --sourceMapRelative .] src/index.js -o bundle.js -v && beefy",
+    "start": "watchify -d -t [babelify --stage 0 --sourceMapRelative .] src/index.js -o bundle.js -v"
   },
   "repository": {
     "type": "git",
