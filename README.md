@@ -28,6 +28,8 @@ There are a few other package scripts that might be useful while developing:
   - start the server with DEBUG=server,api,static,error debug loggin options set
 - 'clean'
   - remove the build folder
+- 'test'
+  - run unit tests
 
 I think there are enough scripts to where it would be prudent to use a task manager, but that's for a later date.
 
@@ -36,12 +38,21 @@ Tests
 
 There are unit tests for all endpoints the server exposes located in `src/tests/api` with the filenames `api.<endpoint>.spec.js`.
 
-Running `npm test` will transform (through babel) any file with *.spec.js and output to `<rootDir>/tests/**/*.spec.js` and then mocha will be run against that output directory. 
+Running `npm test` will transform (through babel) any file with *.spec.js and output to `<rootDir>/tests/**/*.spec.js` and then mocha will be run against that output directory.
 
 Tech
 ----
+
+The main ones that are used in the running application are:
 
 - [Chai](http://chaijs.com)
 - [Sinon]()
 - [Express]()
 - [CouchDB]()
+
+Otherwise, there are a ton of other libraries used to make my life easier that can be found in `package.json`.
+
+License
+-------
+
+MIT
