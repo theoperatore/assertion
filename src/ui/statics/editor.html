@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no'>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/css/bootstrap.min.css">
+
+    <title>object.assign | ASSERTION</title>
+  </head>
+  <body class='page'>
+    <header class='header'>
+      <nav class='navbar navbar-inverse'>
+        <div class='container-fluid'>
+          <a class='navbar-brand'>Assert.me</a>
+          <div class='navbar-right'>
+            <button id='run' type='button' class='btn btn-success navbar-btn'><span class='glyphicon glyphicon-play'></span> Run</button>
+            <button id='clear' type='button' class='btn btn-danger navbar-btn'><span class='glyphicon glyphicon-trash'></span> Clear</button>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <section class='editor-container'>
+      <pre id='editor'>'use strict';
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// Create a simple polyfill of Object.assign to make all of the tests pass
+//
+///////////////////////////////////////////////////////////////////////////////
+function assign() {
+  // write code here
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// Tests
+//
+///////////////////////////////////////////////////////////////////////////////
+let expect = chai.expect;
+
+
+function person(state) {
+  var hp = state.hp;
+  
+  return {
+    getHp: () => hp,
+    setHp: v => hp = v,
+    alive: () => hp >= 1,
+    greet: () => `heyo from ${state.name}`
+  }
+}
+
+function dev(state) {
+  return {
+    code: () => `My favorite language is ${state.lang}`
+  }
+}
+
+function coder(state) {
+  return assign({}, person(state), dev(state));
+}
+
+let me = coder({
+  hp: 10,
+  name: 'TheOperatore',
+  lang: 'JavaScript'
+});
+
+expect(me.alive).to.be.a.function;
+expect(me.greet).to.be.a.function;
+expect(me.code).to.be.a.function;
+expect(me.greet()).to.equal('heyo from TheOperatore');
+expect(me.code()).to.equal('My favorite language is JavaScript');
+
+expect(me.hp).to.be.undefined;
+expect(me.alive()).to.be.true;
+
+me.setHp(0);
+
+expect(me.alive()).to.be.false;
+
+
+
+</pre>
+    </section>
+    <section class='result-container'>
+      <iframe sandbox='allow-scripts' src='result.html'></iframe>
+    </section>
+
+    <script type='text/javascript' src='lib/ace/ace.js'></script>
+    <!--<script type='text/javascript' src='bundle.js'></script>-->
+  </body>
+</html>

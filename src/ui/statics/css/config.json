@@ -390,13 +390,17 @@
     "responsive-utilities.less",
     "glyphicons.less",
     "button-groups.less",
+    "input-groups.less",
     "navs.less",
     "navbar.less",
-    "pagination.less",
     "labels.less",
+    "badges.less",
+    "jumbotron.less",
     "alerts.less",
+    "panels.less",
+    "responsive-embed.less",
     "close.less"
   ],
   "js": [],
-  "customizerUrl": "http://getbootstrap.com/customize/?id=093a5f3682e048e8b65a"
+  "customizerUrl": "http://getbootstrap.com/customize/?id=02267d12086de80bea6f"
 }

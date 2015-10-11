@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no'>
+
+    <link rel="stylesheet" type="text/css" href="css/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+    <title>ASSERTION</title>
+  </head>
+  <body>
+    <header class='start text-center'>
+      <div class='jumbotron'>
+        <div class='container'>
+          <h1>ASSERTION</h1>
+          <p class='lead'>Create and share javascript unit tests</p>
+          <!-- <span class='start-arrow glyphicon glyphicon-triangle-bottom'></span> -->
+        </div>
+      </div>
+    </header>
+    <div class='container'>
+      <section>
+        <h2>Name Your Test</h2>
+        <div class='grid'>
+          <div class='row'>
+            <div class='col-xs-12 col-md-6'>
+              <div class='container-form'>
+                <div class='form-group has-feedback'>
+                  <label class='sr-only' for='assertion-name'>Assertion Name</label>
+                  <input id='assertion-name' class='form-control' type='text'/>
+                </div>
+                <p id='assertion-name-url' class='form-control-static text-muted'>http://assertion.me/</p>
+                <div id='assertion-name-result'></div>
+              </div>
+            </div>
+            <div class='col-xs-12 col-md-6'>
+              <p>Everything starts with a name. Pick a good one that's recognizable and descriptive.</p>
+              <p>Examples of names include:</p>
+              <ul>
+                <li><em>creating an Object.assign polyfill</em></li>
+                <li><em>setTimeout craziness</em></li>
+                <li><em>function composition methods</em></li>
+              </ul>
+              <p>Any name will do, although it must be <strong>unique</strong>. How else are you going to persist these assertions without signing up for yet another service?</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Assert (Expect) Something</h2>
+        <div class='grid'>
+          <div class='row'>
+            <div class='col-xs-12 col-md-6'>
+              <pre id='editor'>'use strict';
+
+const expect = chai.expect;
+const assert = chai.assert;
+
+// lets write some tests for the implementation
+// of the function 'sum()' to be sure it's
+// behaving properly
+
+let even = sum(2, 4, 6, 8);
+let odds = sum(0, 1, 3, 5, 7);
+let arr = sum([ 5, 5, 5 ]);
+let obj = sum({ 'a': 10, 'b': 20, 'c': 30 });
+
+expect(sum).to.be.a('function');
+expect(arr).to.equal(15);
+expect(obj).to.equal(60);
+assert.strictEqual(even, 20);
+assert.strictEqual(odds, 16);
+</pre>
+            </div>
+            <div class='col-xs-12 col-md-6'>
+              <p>The test code and the assertion code (what you are able to write now) will be executed in the same sandbox. Therefore, any functions defined in the tests are the functions to implement and be tested.</p>
+              <p>The testing sandbox comes with the <a href="http://chaijs.com/">Chai Assertion Library</a> as a global variable <em>and</em> you can code using most ES6 features.</p>
+              <p>Some sample tests are provided because sometimes examples are easier to understand than reading.</p>
+              <p>Oh, and don't worry if you can't think up all of the tests now. You'll be able to change them whenever you want.</p>
+              <button id='btn-clear' class='btn btn-danger'>Clear Editor</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class='text-center'>
+        <h2>All Done</h2>
+        <p class='lead'>Did you set everything up? Every aspect thoroughly planned and tested? Great! Create the test and share it with people!</p>
+        <button id='btn-create' class='btn btn-lg btn-success'>Create</button>
+        <div id='msg-create'></div>
+      </section>
+    </div>
+    <hr />
+    <footer class='container text-center'>
+      <small>v0.1.0 &middot; created by Alex Petersen &middot; github</small>
+    </footer>
+    <script type='text/javascript' src='lib/ace/ace.js'></script>
+    <script type="text/javascript" src='main-bundle.js'></script>
+  </body>
+</html>

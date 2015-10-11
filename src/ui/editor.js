@@ -7,6 +7,7 @@ export default () => {
   editor.getSession().setMode('ace/mode/javascript');
   editor.getSession().setTabSize(2);
   editor.getSession().setUseSoftTabs(true);
+  editor.getSession().setUseWorker(false);
 
   return editor;  
 }

@@ -1,0 +1,60 @@
+html, 
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.page {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.header {
+  width: 100%;
+}
+
+.header .navbar-inverse {
+  background-color: inherit;
+  border: 0;
+  margin-bottom: 0;
+}
+
+.header .navbar-right {
+  margin-right: 0;
+}
+
+.editor-container {
+  flex: 1;
+  overflow-y:scroll;
+  position:relative;
+  -webkit-overflow-scrolling: touch;
+}
+
+#editor {
+  margin: 0;
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.result-container {
+  border-top: 1px solid #777;
+  height: 150px;
+  overflow: scroll;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+#results {
+  overflow: scroll;
+  width: 100%;
+  height: 100%;
+}

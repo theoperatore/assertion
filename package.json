@@ -1,12 +1,21 @@
 {
-  "name": "as.sert.me",
+  "name": "ASSERTION",
   "version": "0.1.0",
-  "description": "A simple editor that allows for easy and sharable js assertions using chai",
-  "main": "index.js",
+  "description": "Create and share javascript unit tests",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "browserify -d -t [babelify --stage 0 --sourceMapRelative .] src/index.js -o bundle.js -v && beefy",
-    "start": "watchify -d -t [babelify --stage 0 --sourceMapRelative .] src/index.js -o bundle.js -v"
+    "test": "babel src/tests/ -d tests && mocha -R spec --recursive tests",
+    "clean": "rm -rf build",
+    "watch-main": "watchify -d -t [babelify --stage 0 --sourceMapRelative .] src/ui/main.js -o build/ui/main-bundle.js -v",
+    "watch-editor": "watchify -d -t [babelify --stage 0 --sourceMapRelative .] src/ui/index.js -o build/ui/editor-bundle.js -v",
+    "watch-result": "watchify -d -t [babelify --stage 0 --sourceMapRelative .] src/ui/result.js -o build/ui/result-bundle.js -v",
+    "build-main": "browserify -d -t [babelify --stage 0 --sourceMapRelative .] src/ui/main.js -o build/ui/main-bundle.js -v",
+    "build-editor": "browserify -d -t [babelify --stage 0 --sourceMapRelative .] src/ui/index.js -o build/ui/editor-bundle.js -v",
+    "build-result": "browserify -d -t [babelify --stage 0 --sourceMapRelative .] src/ui/result.js -o build/ui/result-bundle.js -v",
+    "build-server": "babel src/server -d build/server",
+    "js": "npm run build-main && npm run build-editor && npm run build-result",
+    "statics": "cp -rf src/ui/statics/ build/ui",
+    "start": "DEBUG=server,static,api,error node build/server/server.js",
+    "dev": "npm run clean && npm run build-server && npm run statics && npm run js && npm start"
   },
   "repository": {
     "type": "git",
@@ -19,15 +28,20 @@
   },
   "homepage": "https://github.com/theoperatore/assertMe#readme",
   "dependencies": {
+    "babel": "^5.8.23",
+    "browser-request": "^0.3.3",
     "chai": "^3.3.0",
+    "debug": "^2.2.0",
+    "es6-promise": "^3.0.2",
     "express": "^4.13.3",
     "sinon": "^1.17.1",
     "sinon-chai": "^2.8.0"
   },
   "devDependencies": {
     "babelify": "^6.3.0",
-    "beefy": "^2.1.5",
     "browserify": "^11.2.0",
+    "mocha": "^2.3.3",
+    "supertest": "^1.1.0",
     "watchify": "^3.4.0"
   }
 }
