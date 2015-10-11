@@ -4,7 +4,7 @@
 import express from 'express';
 import debug from 'debug';
 
-
+import parser from 'body-parser';
 import * as config from './config';
 import {api, logger, error, notfound} from './routes';
 
@@ -12,6 +12,10 @@ import {api, logger, error, notfound} from './routes';
 const app = express();
 const log = debug('server');
 const prt = process.env.PORT || config.port;
+
+
+// middleware
+app.use(parser.json());
 
 
 // server routes
@@ -26,4 +30,4 @@ app.use(error);
 const server = app.listen(prt, () => log(`server listening on port ${prt}`));
 
 
-export { server };
+export default server;

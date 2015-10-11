@@ -29,7 +29,7 @@ export function unique(val) {
     let opts = {
       url: '/api/names',
       method: 'PUT',
-      body: JSON.stringify({data: val}),
+      body: JSON.stringify({name: val}),
       json: true
     };
 
