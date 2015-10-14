@@ -16,19 +16,19 @@ That will compile the server into the build folder, browserify the client side j
 
 There are a few other package scripts that might be useful while developing:
 
-- 'watch-main'
+- `watch-main`
   - watchify main.js for the landing page javascript
-- 'watch-editor'
+- `watch-editor`
   - watchify editor.js for the editor page
-- 'watch-result'
+- `watch-result`
   - watchify result.js for the logic running in the sandboxed iframe
-- 'statics'
+- `statics`
   - copy over anything in the src/ui/statics folder into the build folder under the path build/ui/*
-- 'start'
+- `start`
   - start the server with DEBUG=server,api,static,error debug loggin options set
-- 'clean'
+- `clean`
   - remove the build folder
-- 'test'
+- `test`
   - run unit tests
 
 I think there are enough scripts to where it would be prudent to use a task manager, but that's for a later date.
