@@ -19,14 +19,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/theoperatore/assertMe.git"
+    "url": "git+ssh://git@github.com:theoperatore/assertion.git"
   },
   "author": "Alex Petersen <theoperatore@gmail.com> (http://anpetersen.me)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/theoperatore/assertMe/issues"
+    "url": "https://github.com/theoperatore/assertion/issues"
   },
-  "homepage": "https://github.com/theoperatore/assertMe#readme",
+  "homepage": "https://github.com/theoperatore/assertion#readme",
   "dependencies": {
     "babel": "^5.8.23",
     "body-parser": "^1.14.1",
