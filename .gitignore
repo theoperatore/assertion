@@ -4,3 +4,4 @@ bundle.js
 result-bundle.js
 build
 tests
+!src/tests
