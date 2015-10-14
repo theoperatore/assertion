@@ -9,8 +9,8 @@ Building
 Compiling the source code is as easy as:
 
 - clone repo
-- npm install
-- npm run dev
+- `npm install`
+- `npm run dev`
 
 That will compile the server into the build folder, browserify the client side js and copy any static files into the build folder, and finally start the server on port 9966.
 
@@ -38,7 +38,7 @@ Tests
 
 There are unit tests for all endpoints the server exposes located in `src/tests/api` with the filenames `api.*.spec.js`.
 
-Running `npm test` will transform (through babel) any file with *.spec.js and output to `<rootDir>/tests/**/*.spec.js` and then mocha will be run against that output directory.
+Running `npm test` will transform (through babel) any file with *.spec.js and output to `rootDir/tests/**/*.spec.js` and then mocha will be run against that output directory.
 
 License
 -------
