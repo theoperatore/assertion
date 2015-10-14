@@ -8,7 +8,6 @@ import debug from 'debug';
 const log = debug('api');
 const api = express.Router();
 
-const tempdb = {};
 
 api.use((req, res, next) => {
   log(`[${req.method}] ${req.originalUrl}`);
@@ -17,18 +16,12 @@ api.use((req, res, next) => {
 
 
 api.put('/names', (req, res) => {
-  if (tempdb.hasOwnProperty(req.body.name)) {
-    res.status(409).json({ status: 'NOT_UNIQUE' });
-    return;
-  }
-
-  tempdb[req.body.name] = req.body.name;
-  res.status(200).json({ status: 'ok' });
+  res.status(501).end();
 })
 
 
 api.post('/tests', (req, res) => {
-  res.json({ status: 'ok' });
+  res.status(501).end();
 })
 
 

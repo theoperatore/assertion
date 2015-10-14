@@ -36,21 +36,9 @@ I think there are enough scripts to where it would be prudent to use a task mana
 Tests
 -----
 
-There are unit tests for all endpoints the server exposes located in `src/tests/api` with the filenames `api.<endpoint>.spec.js`.
+There are unit tests for all endpoints the server exposes located in `src/tests/api` with the filenames `api.*.spec.js`.
 
 Running `npm test` will transform (through babel) any file with *.spec.js and output to `<rootDir>/tests/**/*.spec.js` and then mocha will be run against that output directory.
-
-Tech
-----
-
-The main ones that are used in the running application are:
-
-- [Chai](http://chaijs.com)
-- [Sinon]()
-- [Express]()
-- [CouchDB]()
-
-Otherwise, there are a ton of other libraries used to make my life easier that can be found in `package.json`.
 
 License
 -------

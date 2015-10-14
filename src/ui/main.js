@@ -53,14 +53,14 @@ btnClear.addEventListener('click', ev => {
 
 btnCreate.addEventListener('click', () => {
   let name = strip(inputName.value);
-  let tests = editor.getValue();
+  let code = editor.getValue();
 
   // disable this button
   btnCreate.innerHTML = 'Creating...';
   btnCreate.disabled = true;
 
   // POST to backend
-  gateway.create({name, tests}).then(status => {
+  gateway.create({name, code}).then(status => {
     console.error(status);
     btnCreate.innerHTML = 'Done';
 
