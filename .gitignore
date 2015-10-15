@@ -5,3 +5,5 @@ result-bundle.js
 build
 tests
 !src/tests
+couchdb.stderr
+couchdb.stdout

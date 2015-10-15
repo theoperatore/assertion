@@ -6,10 +6,15 @@ import express from 'express';
 import parser from 'body-parser';
 import * as config from './config';
 import {api, logger, error, notfound} from './routes';
+import db from './db';
 
 
 const app = express();
-const prt = process.env.PORT || config.port;
+const port = config.port;
+
+
+// module wide properties
+app.locals.db = db(config);
 
 
 // middleware
@@ -25,7 +30,7 @@ app.use(error);
 
 
 // engage and export the server
-const server = app.listen(prt, () => console.log(`[server] listening on port ${prt}`));
+const server = app.listen(port, () => console.log(`[server] listening on port ${port}`));
 
 
 export default server;

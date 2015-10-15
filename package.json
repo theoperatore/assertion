@@ -4,6 +4,7 @@
   "description": "Create and share javascript unit tests",
   "scripts": {
     "test": "npm run build-server && babel src/tests/ -d tests && mocha -R spec --recursive tests",
+    "postinstall": "npm link",
     "clean": "rm -rf build && rm -rf tests",
     "watch-main": "watchify -d -t [babelify --stage 0 --sourceMapRelative .] src/ui/main.js -o build/ui/main-bundle.js -v",
     "watch-editor": "watchify -d -t [babelify --stage 0 --sourceMapRelative .] src/ui/index.js -o build/ui/editor-bundle.js -v",
@@ -16,6 +17,9 @@
     "statics": "cp -rf src/ui/statics/ build/ui",
     "start": "DEBUG=static,api,error node build/server/server.js",
     "dev": "npm run clean && npm run build-server && npm run statics && npm run js && npm start"
+  },
+  "bin": {
+    "db": "db"
   },
   "repository": {
     "type": "git",
@@ -32,9 +36,12 @@
     "body-parser": "^1.14.1",
     "browser-request": "^0.3.3",
     "chai": "^3.3.0",
+    "colors": "^1.1.2",
+    "commander": "^2.9.0",
     "debug": "^2.2.0",
     "es6-promise": "^3.0.2",
     "express": "^4.13.3",
+    "nano": "^6.1.5",
     "sinon": "^1.17.1",
     "sinon-chai": "^2.8.0"
   },

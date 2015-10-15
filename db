@@ -1,0 +1,60 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+var colors = require('colors/safe');
+var exec = require('child_process').exec;
+
+program
+  .version('0.1.0')
+  .usage('<cmd>')
+  
+program
+  .command('start')
+  .description('start the database in the background')
+  .action(function () {
+    console.log(colors.green('[db]'), 'starting in background...');
+    exec('couchdb -b', function (err, stdout, stderr) {
+      if (!err) {
+        console.log(colors.green('[db]'), stdout);
+      }
+      else {
+        console.error(colors.red('[error]'), err.message);
+        console.error(colors.red('[error['), stderr);
+      }
+    })
+  })
+
+program
+  .command('stop')
+  .description('stop an already running background database')
+  .action(function () {
+    console.log(colors.green('[db]'), 'stopping database...');
+    exec('couchdb -d', function (err, stdout, stderr) {
+      if (!err) {
+        console.log(colors.green('[db]'), stdout);
+      }
+      else {
+        console.error(colors.red('[error]'), err.message);
+        console.error(colors.red('[error['), stderr);
+      }
+    })
+  })
+
+program
+  .command('status')
+  .description('display the status of any background database')
+  .action(function () {
+    exec('couchdb -s', function (err, stdout, stderr) {
+      if (!err) {
+        console.log(colors.green('[db]'), stdout);
+      }
+      else {
+        console.error(colors.red('[error]'), err.message);
+        console.error(colors.red('[error['), stderr);
+      }
+    })
+  })
+
+program.parse(process.argv);
+
+    
