@@ -12,7 +12,14 @@ Compiling the source code is as easy as:
 - `npm install`
 - `npm run dev`
 
-That will compile the server into the build folder, browserify the client side js and copy any static files into the build folder, and finally start the server on port 9966.
+`npm run dev` will compile the server into the build folder, browserify the client side js and copy any static files into the build folder, and finally start the server on port 9966.
+
+To interact with the database, use the cli program `assertion-db`. It gives the commands `start`, `stop`, and `status` for interacting with a background process database used by the server.
+
+If desired, running `npm link` will copy the `assertion-db` binary into your global folder for ease of execution.
+
+Scripts
+-------
 
 There are a few other package scripts that might be useful while developing:
 

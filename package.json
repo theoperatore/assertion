@@ -4,7 +4,6 @@
   "description": "Create and share javascript unit tests",
   "scripts": {
     "test": "npm run build-server && babel src/tests/ -d tests && mocha -R spec --recursive tests",
-    "postinstall": "npm link",
     "clean": "rm -rf build && rm -rf tests",
     "watch-main": "watchify -d -t [babelify --stage 0 --sourceMapRelative .] src/ui/main.js -o build/ui/main-bundle.js -v",
     "watch-editor": "watchify -d -t [babelify --stage 0 --sourceMapRelative .] src/ui/index.js -o build/ui/editor-bundle.js -v",
