@@ -3,35 +3,30 @@
 var program = require('commander');
 var colors = require('colors/safe');
 var exec = require('child_process').exec;
+var execSync = require('child_process').execSync;
 
 program
   .version('0.1.0')
   .usage('<cmd>')
-  
-program
-  .command('dev')
-  .description('start the database in the current console')
-  .action(function () {
-    console.log(colors.green('[db]'), 'starting...');
-    exec('couchdb', function (err, stdout, stderr) {
-      if (!err) {
-        console.log(colors.green('[db]'), stdout);
-      }
-      else {
-        console.error(colors.red('[error]'), err.message);
-        console.error(colors.red('[error['), stderr);
-      }
-    })
-  })
 
 program
   .command('start')
   .description('start the database in the background')
-  .action(function () {
+  .option('--clear-logs','before starting, remove any previous log files and start fresh')
+  .action(function (options) {
+    if (options.clearLogs) {
+      console.log(colors.green('[db]'), 'removing logs');
+      execSync('rm couchdb.stderr couchdb.stdout');
+    }
+
     console.log(colors.green('[db]'), 'starting in background...');
     exec('couchdb -b', function (err, stdout, stderr) {
       if (!err) {
         console.log(colors.green('[db]'), stdout);
+        console.log(colors.green('[db]'), 'view the logs by using:');
+        console.log(colors.green('[db]'), '');
+        console.log(colors.green('[db]'), '    $ tail -f path/to/couchdb.stdout');
+        console.log(colors.green('[db]'), '');
       }
       else {
         console.error(colors.red('[error]'), err.message);
