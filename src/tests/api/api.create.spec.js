@@ -1,20 +1,30 @@
 'use strict';
 
 import request from 'supertest';
+import bootstrap from '../db-bootstrap';
 
 
-describe.skip('POST /api/tests', () => {
+describe.only('POST /api/tests', () => {
   let server;
   let state;
+  let duplicate;
 
-  beforeEach(() => {
+  before(() => {
+    state = {
+      name: 'a test to be created',
+      code: `console.log('some code');`
+    }
+
+    duplicate = {
+      name: 'not unique',
+      code: `console.log('some code');`
+    }
+  })
+
+  beforeEach(done => {
     delete require.cache[require.resolve('../../build/server/server')];
     server = require('../../build/server/server');
-
-    state = {
-      name: 'a-test-to-be-created',
-      code: `console.log('some code);`
-    }
+    bootstrap(done);
   })
 
   afterEach(done => {
@@ -32,17 +42,28 @@ describe.skip('POST /api/tests', () => {
       .end(err => done(err));
   })
 
+
+  it('should respond with 409 NOT_UNIQUE if there is already a test with that name', done => {
+    request(server)
+      .post('/api/tests')
+      .send(duplicate)
+      .set('Accept', 'application/json')
+      .expect(409, {status: 'NOT_UNIQUE'})
+      .end(err => done(err));
+  })
+
+
   it('should respond with 400 VALIDATION_ERROR when the name is not formatted correctly', done => {
     let incorrect = {
-      name: 'a test-to-be-created ? that valid is not ',
-      code: `console.log('some code);`
+      name: 'a test to be created ? that (valid) is not',
+      code: `console.log('some code');`
     }
 
     request(server)
       .post('/api/tests')
       .send(incorrect)
       .set('Accept', 'application/json')
-      .expect(400, {status: 'VALIDATION_ERROR'})
+      .expect(400, {status: 'VALIDATION_ERROR', invalid: ['?', '(', ')']})
       .end(err => done(err));
   })
 

@@ -9,7 +9,7 @@ const DB_NAME = 'test';
 let nan = nano(URI);
 
 
-let testCode = { testFn() { console.log(`I'm a test`); }, name: 'not unique'};
+let testBody = { testFn() { console.log(`I'm a test`); }, name: 'not unique'};
 let testName = crypto.createHash('md5').update('not-unique').digest('hex');
 
 
@@ -19,7 +19,7 @@ export default function (done) {
       let testdb = nan.use(DB_NAME);
 
 
-      testdb.insert(testCode, testName, done);
+      testdb.insert(testBody, testName, done);
     })
   }) 
 }
