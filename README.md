@@ -40,8 +40,8 @@ There are a few other `package.json` scripts that might be useful while developi
 
 I think there are enough scripts to where it would be prudent to use a task manager, but that's for a later date.
 
-Debug Loggin
-------------
+Debug Logging
+-------------
 
 The server has a few different debugging levels all controlled by the environment variable `DEBUG`. To enable debug logging for all facets run any command with `DEBUG=server,static,api,db,error` before the command:
 
@@ -67,7 +67,9 @@ Tests
 
 There are unit tests for all endpoints the server exposes located in `src/tests/api` with the filenames `api.*.spec.js`.
 
-Running `npm test` will transform (through babel) any file with *.spec.js and output to `rootDir/tests/**/*.spec.js` and then mocha will be run against that output directory.
+Running `npm test` will transform (through babel) any file with *.spec.js and output to `rootDir/tests/*/*.spec.js` and then mocha will be run against that output directory.
+
+Note that running any api test requires the database to be running.
 
 License
 -------
