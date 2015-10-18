@@ -9,6 +9,22 @@ program
   .usage('<cmd>')
   
 program
+  .command('dev')
+  .description('start the database in the current console')
+  .action(function () {
+    console.log(colors.green('[db]'), 'starting...');
+    exec('couchdb', function (err, stdout, stderr) {
+      if (!err) {
+        console.log(colors.green('[db]'), stdout);
+      }
+      else {
+        console.error(colors.red('[error]'), err.message);
+        console.error(colors.red('[error['), stderr);
+      }
+    })
+  })
+
+program
   .command('start')
   .description('start the database in the background')
   .action(function () {

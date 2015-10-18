@@ -21,7 +21,7 @@ If desired, running `npm link` will copy the `assertion-db` binary into your glo
 Scripts
 -------
 
-There are a few other package scripts that might be useful while developing:
+There are a few other `package.json` scripts that might be useful while developing:
 
 - `watch-main`
   - watchify main.js for the landing page javascript
@@ -32,13 +32,35 @@ There are a few other package scripts that might be useful while developing:
 - `statics`
   - copy over anything in the src/ui/statics folder into the build folder under the path build/ui/*
 - `start`
-  - start the server with DEBUG=server,api,static,error debug loggin options set
+  - start the server with DEBUG=server,static,api,db,error debug logging options set
 - `clean`
   - remove the build folder
 - `test`
   - run unit tests
 
 I think there are enough scripts to where it would be prudent to use a task manager, but that's for a later date.
+
+Debug Loggin
+------------
+
+The server has a few different debugging levels all controlled by the environment variable `DEBUG`. To enable debug logging for all facets run any command with `DEBUG=server,static,api,db,error` before the command:
+
+```bash
+# start the server with logging
+$ DEBUG=server,static,api,db,error npm run dev
+
+# run the tests with server logging
+$ DEBUG=server,static,api,db,error npm test
+```
+
+Running the script `npm start` will automatically enable debug logging.
+
+Databse
+-------
+
+The database that the system uses is [CouchDb](http://couchdb.apache.org/). I installed it using Homebrew for development. Once the app is in a state to be deployed, there will be a configuration section. 
+
+Once you have couchdb installed, you can interact with the database using the `assertion-db` executable. `$ ./assertion-db -h` for usage.
 
 Tests
 -----

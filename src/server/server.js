@@ -2,6 +2,7 @@
 
 
 import express from 'express';
+import debug from 'debug';
 
 import parser from 'body-parser';
 import * as config from './config';
@@ -9,6 +10,7 @@ import {api, logger, error, notfound} from './routes';
 import db from './db';
 
 
+const log = debug('server');
 const app = express();
 const port = config.port;
 
@@ -30,7 +32,7 @@ app.use(error);
 
 
 // engage and export the server
-const server = app.listen(port, () => console.log(`[server] listening on port ${port}`));
+const server = app.listen(port, () => log(`listening on port ${port}`));
 
 
 export default server;

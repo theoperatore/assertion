@@ -9,5 +9,5 @@ export const ui = path.join(__dirname, '../ui');
 
 
 // database configurations
-export const uri = process.env.NODE_ENV !== 'production' ? 'http://localhost:5984' : '';
-export const db = process.env.NODE_ENV !== 'production' ? 'test' : 'prod';
+export const uri = 'http://localhost:5984';
+export const db = process.env.NODE_ENV !== 'production' ? 'test' : 'potato';

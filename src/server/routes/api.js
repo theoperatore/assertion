@@ -4,24 +4,29 @@
 import express from 'express';
 import debug from 'debug';
 
+import * as apiService from './services/api-service';
+
 
 const log = debug('api');
 const api = express.Router();
 
 
+// Log all calls to the api
 api.use((req, res, next) => {
   log(`[${req.method}] ${req.originalUrl}`);
   next();
 })
 
 
+// check for unique-ness
 api.put('/names', (req, res) => {
-  res.status(501).end();
+  apiService.checkUnique(req, res);
 })
 
 
+// create a new test
 api.post('/tests', (req, res) => {
-  res.status(501).end();
+  apiService.createNew(req, res);
 })
 
 

@@ -14,7 +14,7 @@
     "build-server": "babel src/server -d build/server",
     "js": "npm run build-main && npm run build-editor && npm run build-result",
     "statics": "cp -rf src/ui/statics/ build/ui",
-    "start": "DEBUG=static,api,db,error node build/server/server.js",
+    "start": "DEBUG=server,static,api,db,error node build/server/server.js",
     "dev": "npm run clean && npm run build-server && npm run statics && npm run js && npm start"
   },
   "bin": {
