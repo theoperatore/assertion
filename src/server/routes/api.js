@@ -18,13 +18,13 @@ api.use((req, res, next) => {
 })
 
 
-// check for unique-ness
+// PUT: check for unique-ness
 api.put('/names', (req, res) => {
   apiService.checkUnique(req, res);
 })
 
 
-// create a new test
+// POST: create a new test
 api.post('/tests', (req, res) => {
   apiService.createNew(req, res);
 })
