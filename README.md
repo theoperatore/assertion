@@ -67,7 +67,7 @@ Tests
 
 There are unit tests for all endpoints the server exposes located in `src/tests/api` with the filenames `api.*.spec.js`.
 
-Running `npm test` will transform (through babel) any file with *.spec.js and output to `rootDir/tests/*/*.spec.js` and then mocha will be run against that output directory.
+Running `npm test` will transform (through babel) any file with *.spec.js and output to `rootDir/tests/[dir]/*.spec.js` and then mocha will be run against that output directory.
 
 Note that running any api test requires the database to be running.
 
