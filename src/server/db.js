@@ -19,5 +19,36 @@ export default config => {
   // do other stuff
   log(`returning handle to database: ${config.db}`);
 
+
+  // if dev mode...destroy current db and bootstrap it on each fire-up
+  if (process.env.NODE_ENV !== 'production') {
+    handle.db.list((listErr, databases) => {
+      if (!listErr) {
+        var exists = databases.filter(b => b === config.db).length > 0;
+
+        if (!exists) {
+          handle.db.create(config.db, err => {
+            if (!err) {
+              log(`created database: ${config.db}`);
+              return;
+            }
+
+            log(err);
+          })
+        }
+
+        else {
+          log(`database: ${config.db} already exists.`);
+          log('run: ')
+          log('');
+          log(`    $ assertion-db destroy ${config.db}`);
+          log('');
+          log('to remove the database and build it again.');
+        }
+      }
+    })
+  }
+
+
   return handle.use(config.db);
 }

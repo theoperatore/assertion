@@ -4,12 +4,12 @@ import {Promise} from 'es6-promise';
 import request from 'browser-request';
 
 
-export function create(state) {
+export function unique(val) {
   return new Promise((resolve, reject) => {
     let opts = {
-      url: '/api/tests',
-      method: 'POST',
-      body: JSON.stringify(state),
+      url: '/api/names',
+      method: 'PUT',
+      body: {name: val},
       json: true
     };
 
@@ -24,12 +24,13 @@ export function create(state) {
   })
 }
 
-export function unique(val) {
+
+export function create(state) {
   return new Promise((resolve, reject) => {
     let opts = {
-      url: '/api/names',
-      method: 'PUT',
-      body: JSON.stringify({name: val}),
+      url: '/api/tests',
+      method: 'POST',
+      body: state,
       json: true
     };
 

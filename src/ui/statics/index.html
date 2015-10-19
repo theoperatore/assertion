@@ -53,7 +53,8 @@
         <div class='grid'>
           <div class='row'>
             <div class='col-xs-12 col-md-6'>
-              <pre id='editor'>'use strict';
+              <div class='editor-container'>
+                <pre id='editor'>'use strict';
 
 const expect = chai.expect;
 const assert = chai.assert;
@@ -73,6 +74,7 @@ expect(obj).to.equal(60);
 assert.strictEqual(even, 20);
 assert.strictEqual(odds, 16);
 </pre>
+              </div>
             </div>
             <div class='col-xs-12 col-md-6'>
               <p>The test code and the assertion code (what you are able to write now) will be executed in the same sandbox. Therefore, any functions defined in the tests are the functions to implement and be tested.</p>

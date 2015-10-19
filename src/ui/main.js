@@ -17,21 +17,28 @@ const msgCreate = document.querySelector('#msg-create');
 
 const checkUnique = debounce((val, cb) => {
   console.log(`checking: ${val}`);
-  gateway.unique(val).then(body => cb(null, body.status)).catch(err => cb(err, null));
+  gateway.unique(val).then(body => cb(null, body)).catch(err => cb(err, null));
 }, 500);
 
-const handleUnique = (err, status) => {
+const handleUnique = (err, body) => {
   if (err) {
-    console.log(err.message);
+    console.log(err.message, body);
     formGroup.classList.remove('has-feedback', 'has-success');
     formGroup.classList.add('has-error'); 
     return;
   }
 
+  if (body.status !== 'ok') {
+    console.log(body);
+    formGroup.classList.remove('has-feedback', 'has-success');
+    formGroup.classList.add('has-error'); 
+    return; 
+  }
+
   formGroup.classList.add('has-feedback', 'has-success');
   formGroup.classList.remove('has-error');
 
-  console.log(`status from be: ${status}`)
+  console.log(`status from be: ${body.status}`, body);
 }
 
 btnCreate.disabled = false;
