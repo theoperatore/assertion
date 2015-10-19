@@ -7,13 +7,15 @@ import bootstrap from '../db-bootstrap';
 describe('PUT /api/names', () => {
   let server;
 
-  beforeEach(done => {
-    delete require.cache[require.resolve('../../build/server/server')];
-    server = require('../../build/server/server');
-    bootstrap(done);
+  before(done => {
+    bootstrap('name-test-database', (err, body) => {
+      delete require.cache[require.resolve('../../build/server/server')];
+      server = require('../../build/server/server');
+      done();
+    });
   })
 
-  afterEach(done => {
+  after(done => {
     server.close(done);
   })
 

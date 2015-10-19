@@ -17,4 +17,9 @@ function validate(text) {
   return text.match(/[^\s\w]|\_/g);
 }
 
-export {md5, normalize, validate};
+// returns true if there is a duplicate id in docs collecdtion
+function duplicate(id, docs) {
+  return docs.filter(doc => doc.id === id).length > 0;
+}
+
+export {md5, normalize, validate, duplicate};

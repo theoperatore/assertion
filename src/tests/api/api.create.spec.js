@@ -4,14 +4,15 @@ import request from 'supertest';
 import bootstrap from '../db-bootstrap';
 
 
-describe.only('POST /api/tests', () => {
+describe('POST /api/tests', () => {
   let server;
   let state;
   let duplicate;
 
-  before(() => {
+  before(done => {
     state = {
       name: 'a test to be created',
+      normalized: 'a-test-to-be-created',
       code: `console.log('some code');`
     }
 
@@ -19,15 +20,15 @@ describe.only('POST /api/tests', () => {
       name: 'not unique',
       code: `console.log('some code');`
     }
+
+    bootstrap('create-api-test-database', () => {
+      delete require.cache[require.resolve('../../build/server/server')];
+      server = require('../../build/server/server');
+      done();
+    });
   })
 
-  beforeEach(done => {
-    delete require.cache[require.resolve('../../build/server/server')];
-    server = require('../../build/server/server');
-    bootstrap(done);
-  })
-
-  afterEach(done => {
+  after(done => {
     server.close(done);
   })
 
@@ -38,10 +39,9 @@ describe.only('POST /api/tests', () => {
       .post('/api/tests')
       .send(state)
       .set('Accept', 'application/json')
-      .expect(200, {status: 'ok', url: `http://assertion.me/${state.name}`})
+      .expect(200, {status: 'ok', url: `${state.normalized}`})
       .end(err => done(err));
   })
-
 
   it('should respond with 409 NOT_UNIQUE if there is already a test with that name', done => {
     request(server)
@@ -51,7 +51,6 @@ describe.only('POST /api/tests', () => {
       .expect(409, {status: 'NOT_UNIQUE'})
       .end(err => done(err));
   })
-
 
   it('should respond with 400 VALIDATION_ERROR when the name is not formatted correctly', done => {
     let incorrect = {
