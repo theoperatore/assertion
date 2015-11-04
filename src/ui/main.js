@@ -1,7 +1,7 @@
 'use strict';
 
-import {debounce, strip} from './utils';
-import {Promise}from 'es6-promise';
+import { debounce, strip } from './utils';
+import { Promise }from 'es6-promise';
 import Editor from './editor';
 import * as gateway from './gateway';
 
@@ -79,8 +79,8 @@ btnCreate.addEventListener('click', () => {
 
     div.classList.add('alert', 'alert-success');
     p1.innerHTML = 'Yes! Your test is all saved and ready to be hammered on:';
-    a.href = `http://localhost:9966/${name}`;
-    a.innerHTML = `http://assertion.me/${name}`;
+    a.href = `http://localhost:9966/${status.url}`;
+    a.innerHTML = `http://assertion.me/${status.url}`;
     p2.appendChild(a);
     p3.innerHTML = 'Happy Testing!';
 
