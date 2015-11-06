@@ -39,11 +39,9 @@ export default config => {
 
         else {
           log(`database: ${config.db} already exists.`);
-          log('run: ')
-          log('');
+          log('run:\n')
           log(`    $ assertion-db destroy ${config.db}`);
-          log('');
-          log('to remove the database and build it again.');
+          log('\nto remove the database and build it again.');
         }
       }
     })

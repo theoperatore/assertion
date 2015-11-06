@@ -18,7 +18,7 @@ const msgCreate = document.querySelector('#msg-create');
 const checkUnique = debounce((val, cb) => {
   console.log(`checking: ${val}`);
   gateway.unique(val).then(body => cb(null, body)).catch(err => cb(err, null));
-}, 500);
+}, 1000);
 
 const handleUnique = (err, body) => {
   if (err) {
@@ -95,7 +95,7 @@ btnCreate.addEventListener('click', () => {
     msgCreate.appendChild(p3);
 
   }).catch(err => {
-    console.error(err.message);
+    console.error(err);
     btnCreate.innerHTML = 'Error';
     btnCreate.classList.add('btn-danger');
     btnCreate.classList.remove('btn-success');

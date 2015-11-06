@@ -35,8 +35,8 @@ export function create(state) {
     };
 
     request(opts, (err, res, body) => {
-      if (err) {
-        reject(err);
+      if (err || res.statusCode === 409) {
+        reject(err || body);
       }
       else {
         resolve(body);
